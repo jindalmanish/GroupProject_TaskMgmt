@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <img src="/img/taskmanage.png" height="100px" width="100px">
+  <a style="text-decoration: none; font-size: 2rem; color: black;" href="/">Task Management</a> <!-- Update title to reflect "My Tasks" -->
+  <% if (!isHideLogoutBtn) { %> <!-- Checking if userId is present in the cookie -->
+  <div class="links">
+      <a href="/">
+        <img src="/img/home.png" height="15px" width="15px">
+        Home</a> <!-- Update the link to point to the home page -->
+      <a class="new-item-link" href="/addtask">
+        <img src="/img/addnew.png" height="18px" width="18px">
+        New Task</a> <!-- Update the link for adding a new task -->
+  </div>
+  <!-- <div><button>Log out</button></div> -->
+    <div>
+      <a href="/logout">
+        <img src="/img/logouticon.png" height="55px" width="75px">
+      </a>
+    </div> <!-- Display logout button -->
+  <% } %>
+</nav>

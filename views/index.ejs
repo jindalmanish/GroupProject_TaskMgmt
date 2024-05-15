@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Pass a JavaScript variable to a partial in EJS -->
+  <%- include('partials/head.ejs', { title: "Home page" }) %>
+
+  <body>
+    <%- include('partials/navbar', { isHideLogoutBtn: false }) %>
+
+    <div class="content">
+      <div class="home">
+        <div class="item-list">          
+          <body>
+            <div class="root">
+              <header>
+                <div class="container">
+                  <table>
+                    <tr>
+                      <td>
+                        <img src="/img/task.png" height="50px" width="50px">
+                      </td>
+                      <td></td>
+                      <td>
+                        <a href="/"><h1>  Task Console</h1></a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </header>
+              <div class="pages">
+                <div class="home">
+                  <form class="create" action="/addtask" method="POST"> <!-- Adjust action attribute as needed -->
+                    <h3>Add a New Task</h3>
+                    <label>Task Title:</label><input type="text" name="taskTitle" required />
+                    <!--
+                    <label>Task Details:</label><input type="text" name="taskDetails" required />
+                    -->
+                    <label>Task Details:</label>
+                    <textarea name="taskDetails" rows="4" cols="30" required></textarea>
+                    <label>Start Date:</label><input type="date" name="startDate" required />
+                    <label>End Date:</label><input type="date" name="endDate" required />
+                    <label>Status:
+                    <select name="status" id="status">
+                      <option value="running">Running</option>
+                      <option value="completed">Completed</option>
+                      <option value="overdue">Overdue</option>
+                    </select> </label> <br /></br>
+                    <button type="submit">Add Task</button>
+                  </form>
+                  <div class="taskArray">
+                    <% tasks.forEach(task => { %>
+                      <div class="task-details">
+                        <h4>
+                          <img src="/img/dailytask.png" height="25px" width="25px">
+                          Task: <%= task.taskTitle %></h4>
+                        <p>Task Details: <%= task.taskDetails %> </p>
+                        <p>Start Date: <%= task.startDate %> </p>
+                        <p>End Date: <%= task.endDate %> </p>
+                        <p>Status: <%= task.status %> </p>
+                        <span class="material-symbols-outlined">
+                          <a href="/single-task/<%= task._id %>">
+                            <img src="/img/updat.png" height="25px" width="25px">
+                            | 
+                            <img src="/img/delete.png" height="25px" width="25px">
+                          </a>
+                        </span>
+                      </div>
+                    <% }); %>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>

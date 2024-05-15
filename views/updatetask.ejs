@@ -1,0 +1,37 @@
+<!-- updatetask.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Pass a JavaScript variable to a partial in EJS -->
+  <%- include('partials/head.ejs', { title: "Update Task" }) %>
+<body>
+  <%- include('partials/navbar', { isHideLogoutBtn: false }) %>
+
+  <div class="content">
+    <div class="create">
+      <h2>Update Task</h2>
+      <form action="/single-task/<%= task._id %>" method="PUT">
+        
+        <label>Task Title:</label><input type="text" value="<%= task.taskTitle %>" name="taskTitle" required />
+      </br>
+        <label>Task Details:</label>
+        <textarea name="taskDetails" rows="4" cols="50" required><%= task.taskDetails %></textarea>
+        <!--<input type="text" value="<%= task.taskDetails %>" name="taskDetails" required />-->
+      </br>
+        <label>Start Date:</label><input type="date" value="<%= task.startDate %>" name="startDate" required />
+      </br>
+        <label>End Date:</label><input type="date" value="<%= task.endDate %>" name="endDate" required />
+      </br>
+        <label>Status:</label>
+        <select name="status" id="status">
+          <option value="running" <%= task.status === 'running' ? 'selected' : '' %>>Running</option>
+          <option value="completed" <%= task.status === 'completed' ? 'selected' : '' %>>Completed</option>
+          <option value="overdue" <%= task.status === 'overdue' ? 'selected' : '' %>>Overdue</option>
+        </select> <br /></br>
+        <button type="submit">Update Task</button>
+      </form>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

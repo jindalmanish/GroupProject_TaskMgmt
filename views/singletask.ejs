@@ -1,0 +1,62 @@
+<!-- Define a function to render the task -->
+<% function renderTask(task) { %>
+</br>
+  <div class="task-details">
+    <article>
+      <h2>Modify and Deletion Console</h2>
+      <p>Task Title: <%= task.taskTitle %> </p>
+      <p>Task Details: <%= task.taskDetails %> </p>
+      <p>Start Date: <%= task.startDate %> </p>
+      <p>End Date: <%= task.endDate %> </p>
+      <p>Status: <%= task.status %> </p>
+      <table>  
+      <tr>
+        <th style="width:50%"></th>
+        <th>
+          <!-- Update button -->
+      <form
+        class="action-form"
+        method="PUT"
+        action="/single-task/update/<%= task._id %>"
+      >
+        <button type="submit" class="update">Update</button>
+      </form>
+    </th>
+    <th>
+      <!-- Delete button -->
+      <form
+        class="action-form"
+        method="POST"
+        action="/single-task/<%= task._id %>?_method=DELETE"
+      >
+        <button type="submit">Delete</button>
+      </form>
+    </th>
+    </tr>
+    </table>
+    </article>
+  </div>
+<% } %>
+
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Pass a JavaScript variable to a partial in EJS -->
+  <%- include('partials/head.ejs', { title: task.title }) %>
+  <body>
+    <%- include('partials/navbar', { isHideLogoutBtn: false }) %>
+    
+    <div class="content">
+      <div class="home">
+        <div class="item-list">
+          <% if (task) { %>
+            <%= renderTask(task) %>
+          <% } else { %>
+            <p>No task found.</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+  </body>
+</html>

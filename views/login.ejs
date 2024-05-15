@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Pass a JavaScript variable to a partial in EJS -->
+  <%- include('partials/head.ejs', { title: "Login" }) %>
+
+  <body>
+    <%- include('partials/navbar', { isHideLogoutBtn: true }) %>
+
+    <div class="content">
+      <div class="create">
+        <h2>Login</h2>
+        <% if (errorMessage) { %>
+          <div id="errorMessage" class="error-message" style="color: red; font-weight: bold;">
+            <%= errorMessage %>
+          </div>
+          <script>
+            // Hide the error message after 5 seconds
+            setTimeout(function() {
+              document.getElementById('errorMessage').style.display = 'none';
+            }, 2000);
+          </script>
+        <% } %>
+        <form action="/api/login" method="POST">
+          <label>Email:</label>
+          <input type="email" id="email" name="email" required /><br />
+          <label>Password:</label>
+          <input type="password" id="password" name="password" required /><br />
+          <!-- You can include additional fields for task-specific data -->
+
+          <button type="submit">Login</button><br /><br />
+          Don't have an account <a style=" font-size: 1rem; color: black;" href="/signup" class="btn btn-primary">Register here</a>
+        </form>
+      </div>
+    </div>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>

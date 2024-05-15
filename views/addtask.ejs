@@ -1,0 +1,33 @@
+<!-- addtask.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Pass a JavaScript variable to a partial in EJS -->
+  <%- include('partials/head.ejs', { title: "Add Task" }) %>
+
+  <body>
+    <%- include('partials/navbar', { isHideLogoutBtn: false }) %>
+
+    <div class="content">
+      <div class="create">
+        <h2>Add a New Task</h2>
+        <form action="/addTask" method="POST">
+          <label>Task Title:</label><input type="text" name="taskTitle" required />
+          <label>Task Details:</label><textarea name="taskDetails" rows="6" cols="50" required></textarea>
+          <label>Start Date:</label><input type="date" name="startDate" required />
+          <label>End Date:</label><input type="date" name="endDate" required />
+          <label>Status:
+          <select name="status" id="status">
+            <option value="running">Running</option>
+            <option value="completed">Completed</option>
+            <option value="overdue">Overdue</option>
+          </select>
+        </label> <br /><br />
+          
+          <button type="submit">Add Task</button>
+        </form>
+      </div>
+    </div>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>

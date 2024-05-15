@@ -1,0 +1,43 @@
+<!-- addtask.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Pass a JavaScript variable to a partial in EJS -->
+  <%- include('partials/head.ejs', { title: "Signup" }) %>
+
+  <body>
+    <%- include('partials/navbar', { isHideLogoutBtn: true }) %>
+
+    <div class="content">
+      <div class="create">
+        <h2>Signup</h2>
+        <form id="signupForm" action="/api/signup" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required minlength="2" maxlength="50"><br>
+  
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required><br>
+  
+          <label for="mobile">Mobile:</label>
+          <input type="text" id="mobile" name="mobile" required pattern="[0-9]{10}"><br>
+  
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required minlength="6" maxlength="20"><br>
+  
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+  
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" required><br>
+  
+          <label for="remark">Remark:</label>
+          <input type="text" id="remark" name="remark" required><br>
+  
+          <button type="submit">Signup</button><br>
+          Already have an account? <a href="/login">Login here</a>
+        </form>
+      </div>
+    </div>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>
